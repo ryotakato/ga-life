@@ -1,0 +1,28 @@
+apply plugin: 'groovy'
+apply plugin: 'java'
+apply plugin: 'application'
+
+def defaultEncoding = 'UTF-8'
+
+repositories {
+  mavenCentral()
+}
+dependencies {
+  compile group : 'org.codehaus.groovy'   , name: 'groovy', version: '2.1.5'
+  compile fileTree(dir: 'lib', include: '*.jar')
+}
+
+[compileJava,compileTestJava,compileGroovy,compileTestGroovy].each{it.options.encoding = defaultEncoding}
+[compileGroovy,compileTestGroovy].each{it.groovyOptions.encoding = defaultEncoding}
+
+
+mainClassName = "Main"
+
+
+task makeDirs(description : 'make all dirs for project setup', group: 'Prepare') << {
+  def sources = [sourceSets.main, sourceSets.test]
+  sources*.allSource*.srcDirs.flatten().each { File srcDir ->
+    println "making $srcDir"
+    srcDir.mkdirs()
+  } 
+}
