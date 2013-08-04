@@ -21,13 +21,13 @@ class Main extends PApplet {
     
     // create life
     10.times {
-      plants.add([x: random(500), y: random(500), c:Color.GREEN])
+      plants << new Life(disp: this, x: random(500), y: random(500), c:Color.GREEN)
     }
     10.times {
-      herbivores.add([x: random(500), y: random(500), c:Color.YELLOW])
+      herbivores << new Life(disp: this, x: random(500), y: random(500), c:Color.YELLOW)
     }
     10.times {
-      carnivores.add([x: random(500), y: random(500), c:Color.RED])
+      carnivores << new Life(disp: this, x: random(500), y: random(500), c:Color.RED)
     }
   }
 
@@ -35,25 +35,16 @@ class Main extends PApplet {
     background(Color.BLACK.getRGB())
 
     plants.each {
-      it.x++;
-      it.y++;
-      stroke(it.c.getRGB());
-      fill(it.c.getRGB());
-      ellipse(it.x as float, it.y as float, 10, 10);
+      it.walk random(5)
+      it.draw()
     }
     herbivores.each {
-      it.x++;
-      it.y++;
-      stroke(it.c.getRGB());
-      fill(it.c.getRGB());
-      ellipse(it.x as float, it.y as float, 10, 10);
+      it.walk random(5)
+      it.draw()
     }
     carnivores.each {
-      it.x++;
-      it.y++;
-      stroke(it.c.getRGB());
-      fill(it.c.getRGB());
-      ellipse(it.x as float, it.y as float, 10, 10);
+      it.walk random(5)
+      it.draw()
     }
   }
 
