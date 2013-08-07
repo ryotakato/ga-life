@@ -9,6 +9,7 @@ class Life {
   float y
   Color c
   float move
+  boolean direction
   PApplet disp
 
   Life() {
@@ -26,18 +27,31 @@ class Life {
   
   void walk() {
 
-    if (disp.random(1) < 0.5) {
+    use(IntRangeExt) {
+      if ((0..100).random() < 5) {
+        this.direction = !this.direction
+      }
+
+      if ((0..100).random() < 5) {
+        reverse()
+      }
+    }
+
+    if (direction) {
       if (this.x + this.move < 0 || World.WIDTH < this.x + this.move) {
-        this.move = this.move * -1
+        reverse()
       }
       this.x = this.x + this.move
 
-
     } else {
       if (this.y + this.move < 0 || World.HEIGHT < this.y + this.move) {
-        this.move = this.move * -1
+        reverse()
       }
       this.y = this.y + this.move
     }
+  }
+
+  void reverse() {
+    this.move = this.move * -1
   }
 }

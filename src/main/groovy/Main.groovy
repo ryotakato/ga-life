@@ -19,7 +19,7 @@ class Main extends PApplet {
   void setup(){
     // create dispaly
     size WIDTH,HEIGHT
-    frameRate 60
+    frameRate World.SPEED
     
     // create life
     10.times {
