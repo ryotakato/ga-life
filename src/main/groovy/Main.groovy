@@ -38,7 +38,7 @@ class Main extends PApplet {
 
     [plants, herbivores, carnivores].each {
       it.each {
-        it.walk(random(5) - 2.5)
+        it.walk()
         it.draw()
       }
     }

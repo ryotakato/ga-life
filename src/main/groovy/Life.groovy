@@ -1,11 +1,22 @@
 import java.awt.Color;
 import processing.core.PApplet;
 
+import ext.IntRangeExt
+
 class Life {
+
   float x
   float y
   Color c
+  float move
   PApplet disp
+
+  Life() {
+    
+    use(IntRangeExt) {
+      this.move = (0..10).random() - 5
+    }
+  }
 
   void draw() {
     disp.stroke(this.c.getRGB());
@@ -13,21 +24,20 @@ class Life {
     disp.ellipse(this.x, this.y, 10, 10);
   }
   
-  void walk(count) {
-    float move = count as float
+  void walk() {
 
     if (disp.random(1) < 0.5) {
-      if (this.x + move < 0 || World.WIDTH < this.x + move) {
-        move = move * -1
+      if (this.x + this.move < 0 || World.WIDTH < this.x + this.move) {
+        this.move = this.move * -1
       }
-      this.x = this.x + move
+      this.x = this.x + this.move
 
 
     } else {
-      if (this.y + move < 0 || World.HEIGHT < this.y + move) {
-        move = move * -1
+      if (this.y + this.move < 0 || World.HEIGHT < this.y + this.move) {
+        this.move = this.move * -1
       }
-      this.y = this.y + move
+      this.y = this.y + this.move
     }
   }
 }
