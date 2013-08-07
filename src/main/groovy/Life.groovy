@@ -7,6 +7,8 @@ class Life {
 
   float x
   float y
+  float w
+  float h
   Color c
   float pace
   boolean direction
@@ -14,22 +16,20 @@ class Life {
 
   Life() {
     
+    this.w = 10
+    this.h = 10
+
     use(IntRangeExt) {
-      this.pace = (0..10).random() - 5
+      this.pace = (0..10).random() - 5 // max:5, min:-5
     }
   }
-
-  void draw() {
-    disp.stroke(this.c.getRGB());
-    disp.fill(this.c.getRGB());
-    disp.ellipse(this.x, this.y, 10, 10);
-  }
   
+
   void walk() {
 
     use(IntRangeExt) {
-      veer((0..100).random() < 5)
-      reverse((0..100).random() < 5)
+      veer((0..100).random() < 5) // 5%
+      reverse((0..100).random() < 5) // 5%
     }
 
     if (direction) {

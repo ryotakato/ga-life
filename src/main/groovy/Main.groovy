@@ -40,9 +40,15 @@ class Main extends PApplet {
     [plants, herbivores, carnivores].each {
       it.each {
         it.walk()
-        it.draw()
+        drawLife(it)
       }
     }
+  }
+
+  void drawLife(l) {
+    this.stroke(l.c.getRGB());
+    this.fill(l.c.getRGB());
+    this.ellipse(l.x, l.y, l.w, l.h);
   }
 
 }
