@@ -19,11 +19,12 @@ class Main extends PApplet {
   void setup(){
     // create dispaly
     size WIDTH,HEIGHT
+    // set world speed
     frameRate World.SPEED
     
     // create life
     10.times {
-      plants << new Life(disp: this, x: random(WIDTH), y: random(HEIGHT), c:Color.GREEN)
+      plants << new Life(disp: this, x: random(WIDTH), y: random(HEIGHT), c:Color.GREEN, pace:0)
     }
     10.times {
       herbivores << new Life(disp: this, x: random(WIDTH), y: random(HEIGHT), c:Color.YELLOW)
