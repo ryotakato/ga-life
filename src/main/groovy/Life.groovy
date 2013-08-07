@@ -12,7 +12,6 @@ class Life {
   Color c
   float pace
   boolean direction
-  PApplet disp
 
   Life() {
     

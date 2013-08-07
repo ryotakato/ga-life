@@ -24,13 +24,13 @@ class Main extends PApplet {
     
     // create life
     10.times {
-      plants << new Life(disp: this, x: random(WIDTH), y: random(HEIGHT), c:Color.GREEN, pace:0)
+      plants << new Life(x: random(WIDTH), y: random(HEIGHT), c:Color.GREEN, pace:0)
     }
     10.times {
-      herbivores << new Life(disp: this, x: random(WIDTH), y: random(HEIGHT), c:Color.YELLOW)
+      herbivores << new Life(x: random(WIDTH), y: random(HEIGHT), c:Color.YELLOW)
     }
     10.times {
-      carnivores << new Life(disp: this, x: random(WIDTH), y: random(HEIGHT), c:Color.RED)
+      carnivores << new Life(x: random(WIDTH), y: random(HEIGHT), c:Color.RED)
     }
   }
 
