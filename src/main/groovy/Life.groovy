@@ -14,10 +14,20 @@ class Life {
   }
   
   void walk(count) {
+    float move = count as float
+
     if (disp.random(1) < 0.5) {
-      this.x = this.x + count as float
+      if (this.x + move < 0 || World.WIDTH < this.x + move) {
+        move = move * -1
+      }
+      this.x = this.x + move
+
+
     } else {
-      this.y = this.y + count as float
+      if (this.y + move < 0 || World.HEIGHT < this.y + move) {
+        move = move * -1
+      }
+      this.y = this.y + move
     }
   }
 }
