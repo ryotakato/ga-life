@@ -8,14 +8,14 @@ class Life {
   float x
   float y
   Color c
-  float move
+  float pace
   boolean direction
   PApplet disp
 
   Life() {
     
     use(IntRangeExt) {
-      this.move = (0..10).random() - 5
+      this.pace = (0..10).random() - 5
     }
   }
 
@@ -28,30 +28,35 @@ class Life {
   void walk() {
 
     use(IntRangeExt) {
-      if ((0..100).random() < 5) {
-        this.direction = !this.direction
-      }
-
-      if ((0..100).random() < 5) {
-        reverse()
-      }
+      veer((0..100).random() < 5)
+      reverse((0..100).random() < 5)
     }
 
     if (direction) {
-      if (this.x + this.move < 0 || World.WIDTH < this.x + this.move) {
-        reverse()
-      }
-      this.x = this.x + this.move
-
+      this.x = move(this.x, World.WIDTH)
     } else {
-      if (this.y + this.move < 0 || World.HEIGHT < this.y + this.move) {
-        reverse()
-      }
-      this.y = this.y + this.move
+      this.y = move(this.y, World.HEIGHT)
     }
   }
 
-  void reverse() {
-    this.move = this.move * -1
+
+  int move(float before, int limit) {
+    float after = before + this.pace
+    if (after < 0 || limit < after) {
+      reverse(true)
+    }
+    return before + this.pace
+  }
+
+  void reverse(cond) {
+    if (cond) {
+      this.pace = this.pace * -1
+    }
+  }
+
+  void veer(cond) {
+    if (cond) {
+      this.direction = !this.direction
+    }
   }
 }
